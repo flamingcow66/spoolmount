@@ -9,7 +9,7 @@ module spool_holder_simple() {
 
     // Main body
     translate([0, 0, 5])
-    cylinder(h=115, r=12, $fn=200);
+    cylinder(h=95, r=12, $fn=200);
 
     // Base fan in
     translate([0, 0, 5])
@@ -23,11 +23,11 @@ module spool_holder_simple() {
     }
 
     // Cap
-    translate([0, 0, 115])
+    translate([0, 0, 95])
     cylinder(h=5, r=17, $fn=200);
 
     // Cap fan out
-    translate([0, 0, 110])
+    translate([0, 0, 90])
     rotate_extrude($fn=200)
     polygon(points=[
         [12, 0],
@@ -36,7 +36,7 @@ module spool_holder_simple() {
     ]);
 
     // Cap rounded edge
-    translate([0, 0, 117.5])
+    translate([0, 0, 97.5])
     torus(r_major=17, r_minor=2.5, xs=0.7, $fn=200);
 }
 
