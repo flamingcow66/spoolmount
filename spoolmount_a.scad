@@ -37,8 +37,8 @@ module spoolmount_a() {
     linear_extrude(6, center=true) {
         polygon(points=[
             [0, 0],
-            [1.2, -4],
-            [1.2, -5],
+            [1.6, -4],
+            [1.6, -5],
             [0, -5],
             [0, 0],
         ]);
