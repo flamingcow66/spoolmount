@@ -1,7 +1,7 @@
 use <spoolmount_a.scad>
 use <spoolmount_b.scad>
 
-module extension(h=25) {
+module extension(h) {
     assert(h >= 23, "minimum extension height is 23");
 
     // Bottom spoolmount
@@ -24,4 +24,4 @@ module extension(h=25) {
     ]);
 }
 
-extension();
+extension(h=25);
