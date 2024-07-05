@@ -35,6 +35,12 @@ module prusa_enclosure_mount_top_right() {
                         [0, -3.235],
                         [-2.8, -1.6175],
                     ]);
+
+                    // Underside washer alignment cutouts
+                    for (y = [-4, 4]) {
+                        translate([124, y, 0])
+                        cube([2, 2, 2], center=true);
+                    }
                 }
             }
 
