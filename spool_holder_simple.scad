@@ -27,16 +27,13 @@ module spool_holder_simple() {
     cylinder(h=5, r=17, $fn=200);
 
     // Cap fan out
-    translate([0, 0, 108])
+    translate([0, 0, 110])
     rotate_extrude($fn=200)
-    translate([12, 0])
-    resize([5, 7])
-    difference() {
-        square(5);
-
-        translate([5, 0])
-        circle(r=5);
-    }
+    polygon(points=[
+        [12, 0],
+        [17, 5],
+        [12, 5],
+    ]);
 
     // Cap rounded edge
     translate([0, 0, 117.5])
