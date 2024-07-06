@@ -1,4 +1,5 @@
 module ptfe_guide() {
+    translate([0, 0, 5])
     difference() {
         hull() {
             for (x = [-22, 22]) {

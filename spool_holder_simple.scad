@@ -1,5 +1,5 @@
-use <spoolmount_b.scad>
-use <torus.scad>
+use <lib/spoolmount_b.scad>
+use <lib/torus.scad>
 
 module spool_holder_simple() {
     spoolmount_b();
