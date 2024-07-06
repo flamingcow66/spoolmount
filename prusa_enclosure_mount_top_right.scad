@@ -2,7 +2,7 @@ use <spoolmount_a.scad>
 use <torus.scad>
 
 module prusa_enclosure_mount_top_right() {
-    translate([0, 0, 15])
+    translate([0, 0, 13])
     spoolmount_a();
 
     rotate([0, 0, 45])
@@ -15,7 +15,7 @@ module prusa_enclosure_mount_top_right() {
                     hull() {
                         for (x = [30, 127]) {
                             for (y = [-7, 7]) {
-                                for (z = [2.5, 17.5]) {
+                                for (z = [2.5, 15.5]) {
                                     translate([x, y, z])
                                     scale([0.7, 0.7, 1.0])
                                     sphere(d=5, $fn=50);
@@ -26,10 +26,10 @@ module prusa_enclosure_mount_top_right() {
                     
                     // Through screw hole
                     translate([120, 0, -1])
-                    cylinder(h=22, d=3.2, $fn=50);
+                    cylinder(h=20, d=3.2, $fn=50);
                     
                     // Hex nut / screw head cutout 
-                    translate([120, 0, 20 - (2.6 / 2)])
+                    translate([120, 0, 18 - (2.6 / 2)])
                     linear_extrude(2.61, center=true)
                     polygon(points=[
                         [-2.8, 1.6175],
@@ -52,7 +52,7 @@ module prusa_enclosure_mount_top_right() {
             hull() {
                 for (x = [30, 115]) {
                     for (y = [-25, 25]) {
-                        for (z = [2.5, 17.5]) {
+                        for (z = [2.5, 15.5]) {
                             translate([x, y, z])
                             scale([0.7, 0.7, 1.0])
                             sphere(d=5, $fn=50);
@@ -68,15 +68,15 @@ module prusa_enclosure_mount_top_right() {
                     union() {
                         // Top core
                         translate([0, 0, 2.5])
-                        cylinder(h=17.5, r=42, $fn=200);
+                        cylinder(h=15.5, r=42, $fn=200);
 
                         // Bottom core
-                        cylinder(h=20, r=40.25, $fn=200);
+                        cylinder(h=18, r=40.25, $fn=200);
                     }
 
                     // Center through cutout
                     translate([0, 0, -1])
-                    cylinder(h=22, r=25, $fn=200);
+                    cylinder(h=20, r=25, $fn=200);
 
                     // Bottom cutout
                     translate([0, 0, -1])
@@ -97,7 +97,7 @@ module prusa_enclosure_mount_top_right() {
         for (x = [44.5 : 12 : 105]) {
             for (y = [-20 : 40 : 20]) {
                 translate([x, y, -1])
-                cylinder(h=22, d=9, $fn=50);
+                cylinder(h=20, d=9, $fn=50);
             }
         }
 
@@ -105,14 +105,14 @@ module prusa_enclosure_mount_top_right() {
         for (x = [51 : 12 : 105]) {
             for (y = [-10 : 20 : 10]) {
                 translate([x, y, -1])
-                cylinder(h=22, d=9, $fn=50);
+                cylinder(h=20, d=9, $fn=50);
             }
         }
 
         // Weight reduction holes row 3
         for (x = [56.5 : 12 : 105]) {
                 translate([x, 0, -1])
-                cylinder(h=22, d=9, $fn=50);
+                cylinder(h=20, d=9, $fn=50);
         }
     }
 }
