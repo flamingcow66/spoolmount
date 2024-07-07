@@ -1,44 +1,85 @@
 module spoolmount_twist() {
-    cylinder(h=5, r=23, $fn=200);
-    
-    for (a = [45 : 90 : 135]) {
-        for (o = [-10, 10]) {
-            rotate([0, 0, a + o])
-            scale([0.2, 1.0, 1.0])
-            rotate_extrude($fn=200)
-            translate([23, 0, 0])
-            _spoolmount_twist_profile();
+    difference() {
+        // Cylinder body
+        cylinder(h=5, r=25, $fn=200);
+        
+        for (a = [45 : 90 : 335]) {
+            // Locking bump entrance cutout
+            rotate([0, 0, a - 13])
+            rotate_extrude(angle=26, $fn=200)
+            translate([22.5, 0, 0])
+            polygon(points=[
+                [0, -1],
+                [3, -1],
+                [3, 2.5],
+                [0, 2.5],
+            ]);
+            
+            // Slide cutout
+            rotate([0, 0, a - 41.5])
+            rotate_extrude(angle=83, $fn=200)
+            translate([22.5, 0, 0])
+            polygon(points=[
+                [3, 0],
+                [2.5, 0],
+                [0, 2.5],
+                [2.5, 5],
+                [3, 5],
+            ]);
+
+            // Rounded end cutouts
+            for (o = [-41.5, 41.5]) {
+                rotate([0, 0, a + o])
+                translate([0, 30, 0])
+                scale([0.2, 1.0, 1.0])
+                rotate_extrude($fn=200)
+                translate([5, 0, 0])
+                polygon(points=[
+                    [0, 0],
+                    [2.5, 2.5],
+                    [0, 5],
+                ]);
+            }
         }
     }
     
-    for (a = [45 : 90 : 335]) {
-        rotate([0, 0, a - 10])
-        rotate_extrude(angle=20, $fn=200)
-        translate([23, 0, 0])
-        _spoolmount_twist_profile();
+    difference() {
+        intersection() {
+            cylinder(h=5, r=25, $fn=200);
+            
+            for (a = [45 : 90 : 335]) {
+                for (o = [-20.65, 20.65]) {
+                    rotate([0, 0, a + o])
+                    translate([0, 23.5, 1])
+                    rotate([45, 0, 0])
+                    scale([1.0, 1.0, 1.0])
+                    cylinder(h=3.5, d=1, center=true, $fn=50);
+                    
+                    rotate([0, 0, a + o])
+                    translate([0, 23.5, 4])
+                    rotate([-45, 0, 0])
+                    scale([1.0, 1.0, 1.0])
+                    cylinder(h=3.5, d=1, center=true, $fn=50);
+                }
+            }
+        }
+
+        for (a = [45 : 90 : 335]) {
+            // Rounded end cutouts
+            for (o = [-21.5, 21.5]) {
+                rotate([0, 0, a + o])
+                translate([0, 30, 0])
+                scale([0.2, 1.0, 1.0])
+                rotate_extrude($fn=200)
+                translate([5, 0, 0])
+                polygon(points=[
+                    [0, 0],
+                    [2.5, 2.5],
+                    [0, 5],
+                ]);
+            }
+        }
     }
-
-    rotate_extrude($fn=200)
-    translate([23, 0, 0])
-    polygon(points=[
-        [0, 3.75],
-        [1.25, 5],
-        [0, 5],
-    ]);
 }
-
-module _spoolmount_twist_profile() {
-    polygon(points=[
-        [0, 1.25],
-        [1.25, 2.5],
-        [0, 3.75],
-    ]);
-    
-    polygon(points=[
-        [0, 0],
-        [1.25, 0],
-        [0, 1.25],
-    ]);
-}
-
+            
 spoolmount_twist();
