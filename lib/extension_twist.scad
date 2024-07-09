@@ -8,12 +8,12 @@ module extension_twist(h) {
 
     // Top spoolmount twist
     translate([0, 0, h])
-    rotate([180, 0, 0])
+    rotate([180, 0, 30])
     spoolmount_twist();
 
     // Center cylinder
     translate([0, 0, 5])
-    cylinder(h=h - 10, r=24.9, $fn=200);
+    cylinder(h=h - 10, r=25, $fn=200);
 }
 
 extension_twist(h=25);

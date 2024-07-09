@@ -8,14 +8,14 @@ module spoolmount() {
 
         // Central through hole
         translate([0, 0, -1])
-        cylinder(h=7, r=25, $fn=200);
+        cylinder(h=7, r=25.1, $fn=200);
     }
     
     for (a = [45 : 90 : 335]) {
         // Locking bumps
         rotate([0, 0, a - 10])
         rotate_extrude(angle=20, $fn=200)
-        translate([22.5, 0, 0])
+        translate([22.6, 0, 0])
         polygon(points=[
             [2.5, 0],
             [0, 2.5],
@@ -25,7 +25,7 @@ module spoolmount() {
         // Rounded bump ends
         for (o = [-10, 10]) {
             rotate([0, 0, a + o])
-            translate([0, 30, 0])
+            translate([0, 30.1, 0])
             scale([0.2, 1.0, 1.0])
             rotate_extrude($fn=200)
             translate([5, 0, 0])
