@@ -5,7 +5,7 @@ module spool_holder_simple() {
     spoolmount_b();
 
     // Fill in spoolmount
-    cylinder(h=5, r=25);
+    cylinder(h=5, r=26);
 
     // Main body
     translate([0, 0, 5])
