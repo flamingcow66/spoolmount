@@ -1,4 +1,5 @@
 use <spoolmount_a.scad>
+use <screw_hole.scad>
 use <torus.scad>
 
 module prusa_enclosure_mount(angle) {
@@ -25,20 +26,8 @@ module prusa_enclosure_mount(angle) {
                     }
                     
                     // Through screw hole
-                    translate([120, 0, -1])
-                    cylinder(h=20, d=3.2, $fn=50);
-                    
-                    // Hex nut / screw head cutout 
-                    translate([120, 0, 18 - (2.6 / 2)])
-                    linear_extrude(2.61, center=true)
-                    polygon(points=[
-                        [-2.8, 1.6175],
-                        [0, 3.235],
-                        [2.8, 1.6175],
-                        [2.8, -1.6175],
-                        [0, -3.235],
-                        [-2.8, -1.6175],
-                    ]);
+                    translate([120, 0, 0])
+                    screw_hole(h=18);
 
                     // Underside washer alignment cutouts
                     for (y = [-4, 4]) {
@@ -68,15 +57,15 @@ module prusa_enclosure_mount(angle) {
                     union() {
                         // Top core
                         translate([0, 0, 2.5])
-                        cylinder(h=15.5, r=42, $fn=200);
+                        cylinder(h=15, r=42, $fn=200);
 
                         // Bottom core
-                        cylinder(h=18, r=40.25, $fn=200);
+                        cylinder(h=5, r=40.25, $fn=200);
                     }
 
                     // Center through cutout
                     translate([0, 0, -1])
-                    cylinder(h=20, r=25, $fn=200);
+                    cylinder(h=20, r=25.1, $fn=200);
 
                     // Bottom cutout
                     translate([0, 0, -1])
@@ -90,6 +79,18 @@ module prusa_enclosure_mount(angle) {
                 // Inner bottom rounded edge
                 translate([0, 0, 2.5])
                 torus(r_major=26.75, r_minor=2.5, xs=0.7, $fn=200);
+            }
+        }
+
+        // Spool ring weight reduction holes
+        for (a = [0 : 20 : 340]) {
+            rotate([0, 0, a])
+            translate([0, 33, 0]) {
+                translate([0, 0, -1])
+                cylinder(h=9.5, d=9, $fn=50);
+
+                translate([0, 0, 8.49])
+                cylinder(h=4.5, d1=9, d2=0, $fn=50);
             }
         }
 
