@@ -2,7 +2,7 @@ use <spoolmount_a.scad>
 use <spoolmount_b.scad>
 
 module extension(h) {
-    assert(h >= 23, "minimum extension height is 23");
+    assert(h >= 14, "minimum extension height is 14");
 
     // Bottom spoolmount
     spoolmount_b();
@@ -11,16 +11,33 @@ module extension(h) {
     translate([0, 0, h - 5])
     spoolmount_a();
 
-    // Center cylinder
-    cylinder(h=h, r=29, $fn=200);
+    translate([0, 0, 4]) {
+        // Inner center cylinder
+        difference() {
+            cylinder(h=h - 8, r=29, $fn=200);
+
+            translate([0, 0, -1])
+            cylinder(h=h - 6, r=25.1, $fn=200);
+        }
+
+        difference() {
+            cylinder(h=h - 8, r=42, $fn=200);
+
+            translate([0, 0, -1])
+            cylinder(h=h - 6, r=37, $fn=200);
+        }
+    }
 
     // Expansion to support top spoolmount
-    translate([0, 0, h - 18])
+    translate([0, 0, h - 9])
     rotate_extrude($fn=200)
     polygon(points=[
         [29, 0],
-        [42, 13],
-        [29, 13],
+        [29, 5],
+        [37, 5],
+        [37, 0],
+        [33, 4],
+        [29, 0],
     ]);
 }
 
