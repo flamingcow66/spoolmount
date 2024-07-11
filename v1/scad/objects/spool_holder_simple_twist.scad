@@ -1,11 +1,8 @@
-use <lib/spoolmount_b.scad>
-use <lib/torus.scad>
+use <../lib/spoolmount_twist.scad>
+use <../lib/torus.scad>
 
-module spool_holder_simple() {
-    spoolmount_b();
-
-    // Fill in spoolmount
-    cylinder(h=5, r=26);
+module spool_holder_simple_twist() {
+    spoolmount_twist();
 
     // Main body
     translate([0, 0, 5])
@@ -40,4 +37,4 @@ module spool_holder_simple() {
     torus(r_major=17, r_minor=2.5, xs=0.7, $fn=200);
 }
 
-spool_holder_simple();
+spool_holder_simple_twist();
