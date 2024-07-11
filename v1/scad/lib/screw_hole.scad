@@ -15,7 +15,7 @@ module screw_hole(h) {
 
         // Small hex nut
         linear_extrude(0.01)
-        hexagon(inradius=2.55);
+        hexagon(inradius=2.65);
     }
 
     // Screw head cutout
