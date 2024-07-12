@@ -11,7 +11,7 @@ module screw_hole(h) {
         // Large hex nut
         translate([0, 0, 3])
         linear_extrude(0.01)
-        hexagon(inradius=2.8);
+        hexagon(inradius=2.85);
 
         // Small hex nut
         linear_extrude(0.01)
