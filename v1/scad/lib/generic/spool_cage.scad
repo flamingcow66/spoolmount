@@ -53,11 +53,13 @@ module spool_cage() {
             }
         }
 
+        // Bottom PTFE hole
         rotate([0, 0, -1.5])
         translate([105, 0, 43])
         rotate([90, 0, 30])
         cylinder(h=50, d=4.2, center=true, $fn=100);
 
+        // Top PTFE hole
         rotate([0, 0, 1.5])
         translate([105, 0, 55])
         rotate([90, 0, -30])
