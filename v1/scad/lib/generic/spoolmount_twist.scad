@@ -1,4 +1,4 @@
-use <torus.scad>
+use <../util/torus.scad>
 
 module spoolmount_twist() {
     difference() {

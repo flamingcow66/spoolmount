@@ -1,6 +1,6 @@
 use <hexagon.scad>
 
-module screw_hole(h) {
+module screw_hole_m3(h) {
     // Through screw hole
     translate([0, 0, -0.01])
     cylinder(h=h, d=3.2, $fn=50);
@@ -27,4 +27,4 @@ module screw_hole(h) {
     cylinder(h=1.01, d=4.4, $fn=100);
 }
 
-screw_hole(h=10);
+screw_hole_m3(h=10);

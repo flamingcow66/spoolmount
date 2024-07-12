@@ -1,7 +1,7 @@
 use <spoolmount_twist.scad>
 
 module extension_twist(h, twist) {
-    assert(h >= 10, "minimum extension height is 10");
+    assert(h >= 10, "minimum extension_twist height is 10");
 
     // Bottom spoolmount twist
     spoolmount_twist();

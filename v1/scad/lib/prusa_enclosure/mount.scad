@@ -1,6 +1,6 @@
-use <spoolmount_a.scad>
-use <screw_hole.scad>
-use <torus.scad>
+use <../generic/spoolmount_a.scad>
+use <../util/screw_hole_m3.scad>
+use <../util/torus.scad>
 
 module prusa_enclosure_mount(angle) {
     translate([0, 0, 13])
@@ -27,7 +27,7 @@ module prusa_enclosure_mount(angle) {
                     
                     // Through screw hole
                     translate([120, 0, 0])
-                    screw_hole(h=18);
+                    screw_hole_m3(h=18);
 
                     // Underside washer alignment cutouts
                     for (y = [-4, 4]) {

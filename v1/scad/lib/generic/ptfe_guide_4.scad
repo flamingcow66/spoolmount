@@ -1,6 +1,6 @@
-use <../lib/screw_hole.scad>
+use <../util/screw_hole_m3.scad>
 
-module ptfe_guide() {
+module ptfe_guide_4() {
     translate([0, 0, 5])
     difference() {
         hull() {
@@ -16,7 +16,7 @@ module ptfe_guide() {
 
         // Screw hole
         translate([0, 0, -5])
-        screw_hole(10);
+        screw_hole_m3(h=10);
 
         // PTFE holes
         for (x = [-18, -10, 10, 18]) {
@@ -27,4 +27,4 @@ module ptfe_guide() {
     }
 }
 
-ptfe_guide();
+ptfe_guide_4();

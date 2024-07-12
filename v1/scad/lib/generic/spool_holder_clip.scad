@@ -1,7 +1,9 @@
-use <../lib/spoolmount_b.scad>
-use <../lib/torus.scad>
+use <spoolmount_b.scad>
+use <../util/torus.scad>
 
-module spool_holder_simple() {
+module spool_holder_clip(h) {
+    assert(h >= 25, "minimum spool_holder_clip height is 25");
+
     spoolmount_b();
 
     // Fill in spoolmount
@@ -9,7 +11,7 @@ module spool_holder_simple() {
 
     // Main body
     translate([0, 0, 5])
-    cylinder(h=95, r=12, $fn=200);
+    cylinder(h=h - 5, r=12, $fn=200);
 
     // Base fan in
     translate([0, 0, 5])
@@ -23,11 +25,11 @@ module spool_holder_simple() {
     }
 
     // Cap
-    translate([0, 0, 95])
+    translate([0, 0, h - 5])
     cylinder(h=5, r=17, $fn=200);
 
     // Cap fan out
-    translate([0, 0, 90])
+    translate([0, 0, h - 10])
     rotate_extrude($fn=200)
     polygon(points=[
         [12, 0],
@@ -36,8 +38,8 @@ module spool_holder_simple() {
     ]);
 
     // Cap rounded edge
-    translate([0, 0, 97.5])
+    translate([0, 0, h - 2.5])
     torus(r_major=17, r_minor=2.5, xs=0.7, $fn=200);
 }
 
-spool_holder_simple();
+spool_holder_clip(h=100);

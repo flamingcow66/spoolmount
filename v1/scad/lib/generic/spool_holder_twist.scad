@@ -1,7 +1,9 @@
-use <../lib/spoolmount_twist.scad>
-use <../lib/torus.scad>
+use <spoolmount_twist.scad>
+use <../util/torus.scad>
 
-module spool_holder_simple_twist() {
+module spool_holder_twist(h) {
+    assert(h >= 25, "minimum spool_holder_twist height is 25");
+
     spoolmount_twist();
 
     // Main body
@@ -20,11 +22,11 @@ module spool_holder_simple_twist() {
     }
 
     // Cap
-    translate([0, 0, 95])
+    translate([0, 0, h - 5])
     cylinder(h=5, r=17, $fn=200);
 
     // Cap fan out
-    translate([0, 0, 90])
+    translate([0, 0, h - 10])
     rotate_extrude($fn=200)
     polygon(points=[
         [12, 0],
@@ -33,8 +35,8 @@ module spool_holder_simple_twist() {
     ]);
 
     // Cap rounded edge
-    translate([0, 0, 97.5])
+    translate([0, 0, h - 2.5])
     torus(r_major=17, r_minor=2.5, xs=0.7, $fn=200);
 }
 
-spool_holder_simple_twist();
+spool_holder_twist(h=100);
