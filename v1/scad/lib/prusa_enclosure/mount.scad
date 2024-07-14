@@ -2,8 +2,8 @@ use <../generic/spoolmount_a.scad>
 use <../util/screw_hole_m3.scad>
 use <../util/torus.scad>
 
-module prusa_enclosure_mount(angle) {
-    translate([0, 0, 13])
+module prusa_enclosure_mount(angle, h=10) {
+    translate([0, 0, h - 5])
     spoolmount_a();
 
     rotate([0, 0, angle])
@@ -16,7 +16,7 @@ module prusa_enclosure_mount(angle) {
                     hull() {
                         for (x = [30, 127]) {
                             for (y = [-7, 7]) {
-                                for (z = [2.5, 15.5]) {
+                                for (z = [2.5, h - 2.5]) {
                                     translate([x, y, z])
                                     scale([0.7, 0.7, 1.0])
                                     sphere(d=5, $fn=50);
@@ -27,7 +27,7 @@ module prusa_enclosure_mount(angle) {
                     
                     // Through screw hole
                     translate([120, 0, 0])
-                    screw_hole_m3(h=18);
+                    screw_hole_m3(h=h);
 
                     // Underside washer alignment cutouts
                     for (y = [-4, 4]) {
@@ -41,7 +41,7 @@ module prusa_enclosure_mount(angle) {
             hull() {
                 for (x = [30, 115]) {
                     for (y = [-25, 25]) {
-                        for (z = [2.5, 15.5]) {
+                        for (z = [2.5, h - 2.5]) {
                             translate([x, y, z])
                             scale([0.7, 0.7, 1.0])
                             sphere(d=5, $fn=50);
@@ -57,7 +57,7 @@ module prusa_enclosure_mount(angle) {
                     union() {
                         // Top core
                         translate([0, 0, 2.5])
-                        cylinder(h=15, r=42, $fn=200);
+                        cylinder(h=h - 3, r=42, $fn=200);
 
                         // Bottom core
                         cylinder(h=5, r=40.25, $fn=200);
@@ -65,7 +65,7 @@ module prusa_enclosure_mount(angle) {
 
                     // Center through cutout
                     translate([0, 0, -1])
-                    cylinder(h=20, r=25.1, $fn=200);
+                    cylinder(h=h + 2, r=25.1, $fn=200);
 
                     // Bottom cutout
                     translate([0, 0, -1])
@@ -87,9 +87,9 @@ module prusa_enclosure_mount(angle) {
             rotate([0, 0, a])
             translate([0, 33, 0]) {
                 translate([0, 0, -1])
-                cylinder(h=9.5, d=9, $fn=50);
+                cylinder(h=h - 8.5, d=9, $fn=50);
 
-                translate([0, 0, 8.49])
+                translate([0, 0, h - 9.51])
                 cylinder(h=4.5, d1=9, d2=0, $fn=50);
             }
         }
@@ -98,7 +98,7 @@ module prusa_enclosure_mount(angle) {
         for (x = [44.5 : 12 : 105]) {
             for (y = [-20 : 40 : 20]) {
                 translate([x, y, -1])
-                cylinder(h=20, d=9, $fn=50);
+                cylinder(h=h + 2, d=9, $fn=50);
             }
         }
 
@@ -106,14 +106,14 @@ module prusa_enclosure_mount(angle) {
         for (x = [51 : 12 : 105]) {
             for (y = [-10 : 20 : 10]) {
                 translate([x, y, -1])
-                cylinder(h=20, d=9, $fn=50);
+                cylinder(h=h + 2, d=9, $fn=50);
             }
         }
 
         // Weight reduction holes row 3
         for (x = [56.5 : 12 : 105]) {
                 translate([x, 0, -1])
-                cylinder(h=20, d=9, $fn=50);
+                cylinder(h=h + 2, d=9, $fn=50);
         }
     }
 }
