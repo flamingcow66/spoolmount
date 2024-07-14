@@ -68,7 +68,7 @@ module spool_cage() {
 
     // Bottom edge
     translate([0, 0, 2.5])
-    torus(r_major=102.5, r_minor=2.5, $fn=500);
+    torus(r_major=103.5, r_minor=2.5, xs=0.6, $fn=500);
 
     // Top edge
     translate([0, 0, 100.5])
