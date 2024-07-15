@@ -1,7 +1,7 @@
 use <spoolmount_b.scad>
 use <../util/torus.scad>
 
-module spool_cage(h=95) {
+module spool_cage(h=90) {
     // TODO: Parameterize diameter
 
     spoolmount_b();
