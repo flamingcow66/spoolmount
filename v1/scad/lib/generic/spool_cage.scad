@@ -1,8 +1,8 @@
 use <spoolmount_b.scad>
 use <../util/torus.scad>
 
-module spool_cage() {
-    // TODO: Parameterize diameter and height
+module spool_cage(h=95) {
+    // TODO: Parameterize diameter
 
     spoolmount_b();
 
@@ -27,15 +27,17 @@ module spool_cage() {
     translate([0, 0, 2.5])
     difference() {
         // Main cylinder
-        cylinder(h=98, d=210, $fn=500);
+        cylinder(h=h - 3.5, d=210, $fn=500);
 
         // Center through cutout
         translate([0, 0, -1])
-        cylinder(h=100, d=204, $fn=500);
+        cylinder(h=h - 1.5, d=204, $fn=500);
+
+        cent = ((h - 3.5) % 9) / 2;
 
         // Row holes 1, 3, ...
         for (a = [14 : 6 : 351]) {
-            for (h = [8 : 18 : 82]) {
+            for (h = [cent + 9 : 18 : h - 10]) {
                 rotate([0, 0, a])
                 translate([100, 0, h])
                 rotate([0, 90, 0])
@@ -45,7 +47,7 @@ module spool_cage() {
 
         // Row holes 2, 4, ...
         for (a = [11 : 6 : 348]) {
-            for (h = [17 : 18 : 91]) {
+            for (h = [cent + 18 : 18 : h - 10]) {
                 rotate([0, 0, a])
                 translate([100, 0, h])
                 rotate([0, 90, 0])
@@ -55,13 +57,13 @@ module spool_cage() {
 
         // Bottom PTFE hole
         rotate([0, 0, -1.5])
-        translate([105, 0, 43])
+        translate([105, 0, ((h - 2.5) / 2) - 6])
         rotate([90, 0, 30])
         cylinder(h=50, d=4.2, center=true, $fn=100);
 
         // Top PTFE hole
         rotate([0, 0, 1.5])
-        translate([105, 0, 55])
+        translate([105, 0, ((h - 2.5) / 2) + 6])
         rotate([90, 0, -30])
         cylinder(h=50, d=4.2, center=true, $fn=100);
     }
@@ -71,7 +73,7 @@ module spool_cage() {
     torus(r_major=103.5, r_minor=2.5, xs=0.6, $fn=500);
 
     // Top edge
-    translate([0, 0, 100.5])
+    translate([0, 0, h - 1])
     torus(r_major=103, r_minor=2, $fn=500);
 }
 
