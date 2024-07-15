@@ -1,7 +1,7 @@
 use <spoolmount_b.scad>
 use <../util/torus.scad>
 
-module spool_cage(h=90) {
+module spool_cage(h=95) {
     // TODO: Parameterize diameter
 
     spoolmount_b();
@@ -26,18 +26,20 @@ module spool_cage(h=90) {
     // Cage
     translate([0, 0, 2.5])
     difference() {
+        cage_height = h - 4.5;
+
         // Main cylinder
-        cylinder(h=h - 3.5, d=210, $fn=500);
+        cylinder(h=cage_height, d=210, $fn=500);
 
         // Center through cutout
         translate([0, 0, -1])
-        cylinder(h=h - 1.5, d=204, $fn=500);
+        cylinder(h=cage_height + 2, d=204, $fn=500);
 
-        cent = ((h - 3.5) % 9) / 2;
+        cent = (cage_height % 9) / 2;
 
         // Row holes 1, 3, ...
         for (a = [14 : 6 : 351]) {
-            for (h = [cent + 9 : 18 : h - 10]) {
+            for (h = [cent + 9 : 18 : cage_height - 5]) {
                 rotate([0, 0, a])
                 translate([100, 0, h])
                 rotate([0, 90, 0])
@@ -47,7 +49,7 @@ module spool_cage(h=90) {
 
         // Row holes 2, 4, ...
         for (a = [11 : 6 : 348]) {
-            for (h = [cent + 18 : 18 : h - 10]) {
+            for (h = [cent + 18 : 18 : cage_height - 5]) {
                 rotate([0, 0, a])
                 translate([100, 0, h])
                 rotate([0, 90, 0])
@@ -57,13 +59,13 @@ module spool_cage(h=90) {
 
         // Bottom PTFE hole
         rotate([0, 0, -1.5])
-        translate([105, 0, ((h - 2.5) / 2) - 6])
+        translate([105, 0, (cage_height / 2) - 6])
         rotate([90, 0, 30])
         cylinder(h=50, d=4.2, center=true, $fn=100);
 
         // Top PTFE hole
         rotate([0, 0, 1.5])
-        translate([105, 0, ((h - 2.5) / 2) + 6])
+        translate([105, 0, (cage_height / 2) + 6])
         rotate([90, 0, -30])
         cylinder(h=50, d=4.2, center=true, $fn=100);
     }
@@ -73,7 +75,7 @@ module spool_cage(h=90) {
     torus(r_major=103.5, r_minor=2.5, xs=0.6, $fn=500);
 
     // Top edge
-    translate([0, 0, h - 1])
+    translate([0, 0, h - 2])
     torus(r_major=103, r_minor=2, $fn=500);
 }
 
