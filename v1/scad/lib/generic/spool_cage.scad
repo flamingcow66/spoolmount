@@ -1,7 +1,7 @@
 use <spoolmount_b.scad>
 use <../util/torus.scad>
 
-module spool_cage(h=95) {
+module spool_cage(h=90, ptfe_offset=-10) {
     // TODO: Parameterize diameter
 
     spoolmount_b();
@@ -59,13 +59,13 @@ module spool_cage(h=95) {
 
         // Bottom PTFE hole
         rotate([0, 0, -1.5])
-        translate([105, 0, (cage_height / 2) - 6])
+        translate([105, 0, (cage_height / 2) - 5 + ptfe_offset])
         rotate([90, 0, 30])
         cylinder(h=50, d=4.2, center=true, $fn=100);
 
         // Top PTFE hole
         rotate([0, 0, 1.5])
-        translate([105, 0, (cage_height / 2) + 6])
+        translate([105, 0, (cage_height / 2) + 5 + ptfe_offset])
         rotate([90, 0, -30])
         cylinder(h=50, d=4.2, center=true, $fn=100);
     }
