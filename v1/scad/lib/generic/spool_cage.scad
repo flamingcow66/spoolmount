@@ -1,10 +1,10 @@
-use <spoolmount_b.scad>
+use <spoolmount.scad>
 use <../util/torus.scad>
 
 module spool_cage(h=90, ptfe_offset=-10) {
     // TODO: Parameterize diameter
 
-    spoolmount_b();
+    spoolmount();
 
     // Radial arms out from spoolmount
     for (a = [0 : 45 : 315]) {

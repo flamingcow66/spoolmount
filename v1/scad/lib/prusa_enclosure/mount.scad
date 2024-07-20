@@ -1,10 +1,10 @@
-use <../generic/spoolmount_a.scad>
+use <../generic/spoolmount.scad>
 use <../util/screw_hole_m3.scad>
 use <../util/torus.scad>
 
 module prusa_enclosure_mount(angle, h=10) {
     translate([0, 0, h - 5])
-    spoolmount_a();
+    spoolmount();
 
     rotate([0, 0, angle])
     difference() {

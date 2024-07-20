@@ -1,15 +1,14 @@
-use <spoolmount_a.scad>
-use <spoolmount_b.scad>
+use <spoolmount.scad>
 
 module extension_clip(h) {
     assert(h >= 14, "minimum extension_clip height is 14");
 
     // Bottom spoolmount
-    spoolmount_b();
+    spoolmount();
 
     // Top spoolmount
     translate([0, 0, h - 5])
-    spoolmount_a();
+    spoolmount();
 
     translate([0, 0, 4]) {
         // Inner center cylinder

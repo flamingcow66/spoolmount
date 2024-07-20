@@ -1,10 +1,10 @@
-use <spoolmount_b.scad>
+use <spoolmount.scad>
 use <../util/torus.scad>
 
 module spool_holder_clip(h) {
     assert(h >= 25, "minimum spool_holder_clip height is 25");
 
-    spoolmount_b();
+    spoolmount();
 
     // Fill in spoolmount
     cylinder(h=5, r=26);
