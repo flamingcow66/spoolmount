@@ -3,7 +3,7 @@ use <hexagon.scad>
 module screw_hole_m3(h) {
     // Through screw hole
     translate([0, 0, -0.01])
-    cylinder(h=h, d=3.2, $fn=50);
+    cylinder(h=h, d=3.3, $fn=50);
 
     // Hex nut cutout 
     translate([0, 0, h - 3])
