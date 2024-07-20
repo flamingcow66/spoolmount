@@ -14,7 +14,7 @@ module prusa_enclosure_mount(angle, h=10) {
                 difference() {
                     // Side body
                     hull() {
-                        for (x = [40, 127]) {
+                        for (x = [41, 127]) {
                             for (y = [-7, 7]) {
                                 for (z = [2.5, h - 2.5]) {
                                     translate([x, y, z])
@@ -39,7 +39,7 @@ module prusa_enclosure_mount(angle, h=10) {
 
             // Center body
             hull() {
-                for (x = [42, 115]) {
+                for (x = [43, 115]) {
                     for (y = [-25, 25]) {
                         for (z = [2.5, h - 2.5]) {
                             translate([x, y, z])
@@ -58,11 +58,11 @@ module prusa_enclosure_mount(angle, h=10) {
                         scale([0.7, 0.7, 1.0])
                         sphere(d=5, $fn=50);
 
-                        translate([40, ys * 27, z])
+                        translate([41, ys * 27, z])
                         scale([0.7, 0.7, 1.0])
                         sphere(d=5, $fn=50);
 
-                        translate([40, ys * 15, z])
+                        translate([44, ys * 5, z])
                         scale([0.7, 0.7, 1.0])
                         sphere(d=5, $fn=50);
                     }
