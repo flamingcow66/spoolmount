@@ -1,35 +1,77 @@
 use <../util/torus.scad>
 
-module spoolmount() {
+module spoolmount(h=5) {
+    assert(h >= 5, "minimum spoolmount height is 5");
+
     difference() {
-        // Cylinder body
-        cylinder(h=5, r=44, $fn=200);
+        union() {
+            // Center cylinder body
+            cylinder(h=h, r=44, $fn=200);
+
+            if (h > 5) {
+                // Outer cylinder body
+                translate([0, 0, 2.5])
+                cylinder(h=h - 5, r=45.75, $fn=200);
+            }
+        }
 
         // Central through hole
-        cylinder(h=5, r=25.1, $fn=200);
+        translate([0, 0, -0.01])
+        cylinder(h=h + 0.02, r=25.1, $fn=200);
 
         // Cutouts for rounded edges
-        for (z = [-1, 4.5]) {
+        for (z = [-0.01, h - 0.5]) {
             translate([0, 0, z])
-            cylinder(h=1.5, r=25.45, $fn=200);
+            cylinder(h=0.51, r=25.45, $fn=200);
         }
         
         // Holes
         for (a = [0 : 30 : 330]) {
             rotate([0, 0, a])
-            translate([34.75, 0, 0])
-            rotate([90, 0, 90])
-            linear_extrude(9.25, center=true)
-            polygon(points=[
-                [4, -1],
-                [4, 2],
-                [6, 4],
-                [6, 6],
-                [-6, 6],
-                [-6, 4],
-                [-4, 2],
-                [-4, -1],
-            ]);
+            translate([34.75, 0, 0]) {
+                // Attachment cutout
+                rotate([90, 0, 90])
+                linear_extrude(9.25, center=true)
+                polygon(points=[
+                    [4, -1],
+                    [4, 2],
+                    [6, 4],
+                    [6, 5.01],
+                    [-6, 5.01],
+                    [-6, 4],
+                    [-4, 2],
+                    [-4, -1],
+                ]);
+
+                // Access cutout
+                if (h > 5) {
+                    difference() {
+                        // Main cutout
+                        rotate([90, 0, 0])
+                        linear_extrude(14, center=true)
+                        polygon(points=[
+                            [-4.625, 5],
+                            [-5.625, 6],
+                            [-5.625, max(6, h) + 0.01],
+                            [5.625, max(6, h) + 0.01],
+                            [5.625, 6],
+                            [4.625, 5],
+                        ]);
+
+                        // Edge triangles
+                        // Cutout from cutout
+                        for (xs = [-1, 1]) {
+                            rotate([90, 0, 90])
+                            linear_extrude(11.25, center=true)
+                            polygon(points=[
+                                [xs * 6, 5],
+                                [xs * 7, 6],
+                                [xs * 7, 5],
+                            ]);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -66,11 +108,13 @@ module spoolmount() {
     }
 
     // Rounded outer edge
-    translate([0, 0, 2.5])
-    torus(r_major=44, r_minor=2.5, xs=0.7, $fn=200);
+    for (z = [2.5, h - 2.5]) {
+        translate([0, 0, z])
+        torus(r_major=44, r_minor=2.5, xs=0.7, $fn=200);
+    }
 
     // Rounded inner edges
-    for (z = [0.5, 4.5]) {
+    for (z = [0.5, h - 0.5]) {
         translate([0, 0, z])
         torus(r_major=25.45, r_minor=0.5, xs=0.7, $fn=200);
     }
