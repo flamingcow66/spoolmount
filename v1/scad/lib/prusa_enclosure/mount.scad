@@ -31,8 +31,8 @@ module prusa_enclosure_mount(angle, h=10) {
 
                     // Underside washer alignment cutouts
                     for (y = [-4, 4]) {
-                        translate([124, y, 0])
-                        cube([2, 2, 2], center=true);
+                        translate([124, y, 1])
+                        cube([2.1, 2.1, 2.01], center=true);
                     }
                 }
             }

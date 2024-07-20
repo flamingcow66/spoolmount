@@ -8,11 +8,11 @@ module prusa_enclosure_mount_washer() {
         cylinder(h=3.5, d=3.2, $fn=50);
     }
     
-    translate([7.5, 3, 2])
-    cube([2, 2, 1], center=true);
+    translate([7.5, 3, 2.5])
+    cube([2, 2, 2], center=true);
     
-    translate([7.5, 11, 2])
-    cube([2, 2, 1], center=true);
+    translate([7.5, 11, 2.5])
+    cube([2, 2, 2], center=true);
 }
 
 prusa_enclosure_mount_washer();
