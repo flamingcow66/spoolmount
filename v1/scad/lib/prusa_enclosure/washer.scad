@@ -5,7 +5,7 @@ module prusa_enclosure_mount_washer() {
 
         // Through screw hole
         translate([3.5, 7, -1])
-        cylinder(h=3.5, d=3.2, $fn=50);
+        cylinder(h=3.5, d=3.3, $fn=50);
     }
     
     translate([7.5, 3, 2.5])
